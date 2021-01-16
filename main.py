@@ -28,7 +28,7 @@ final_list = []
 
 indexes = []
 
-for i in range(200):
+for i in range(len(main_data)):
     indexes.append(0)
 
 for tech in user_tech_list:
@@ -39,6 +39,7 @@ for tech in user_tech_list:
                 indexes[tech_and_orgs[tech][i]] = 1
     except Exception as e:
         print(e, "was not found in the above list of tech stacks.")
+        
 
 with open('To_send_csv_file.csv', 'w', encoding='utf8') as file:
     fieldnames = ['Organisation', 'URL', 'Tech Stacks']
@@ -58,11 +59,11 @@ Email_Pass = input("Enter your password: ")
 
 msg = EmailMessage()
 
-msg['Subject'] = 'List of organisations which used tech stacks that you know.'
+msg['Subject'] = 'List of organisations which used tech stacks familiar to you.'
 msg['From'] = Email_Add
 msg['To'] = Email_Add
 
-msg.set_content('Please find attached a csv file that contains the list of organisations which used tech stacks that you know.')
+msg.set_content('Please find attached a csv file that contains the list of organisations which used tech stacks familiar to you.')
 
 with open('To_send_csv_file.csv', 'rb') as f:
     file_data = f.read()
